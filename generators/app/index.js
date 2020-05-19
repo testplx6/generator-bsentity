@@ -33,12 +33,35 @@ module.exports = class extends Generator {
     ]);
   }
 
+  paths() {
+    this.log("destinationroot", this.destinationRoot());
+    // returns '~/project'
+
+    this.log("destinationpath", this.destinationPath('index.js'));
+    // returns '~/project/index.js'
+
+    this.log("sourceroot", this.sourceRoot());
+    // returns '~/generator-bsentity/generators/app/templates'
+
+    this.log("templatepath", this.templatePath('index.js'));
+    // returns '~/generator-bsentity/generators/app/templates/index.js'
+
+    this.log("contextRoot", this.contextRoot);
+    // returns './'
+  }
+
   writing() {
     this.log("argument app name", this.options.appname);
     this.log("argument app id", this.options.appid);
     this.log("app name", this.answers.name, "cool feature", this.answers.cool); // user answer `cool` used
     this.log("babel", this.options.babel ? ".babel" : ".nobab");
     this.log("babel", this.options.babel);
+
+    this.fs.copyTpl(
+      this.templatePath('index.html'),
+      this.destinationPath('public/index.html'),
+      { title: this.options.appname }
+    );
   }
 
   method1() {
