@@ -22,7 +22,37 @@ module.exports = class extends MyBase {
   writing() {
       this.fs.copyTpl(
       this.templatePath('AddEntity.vue'),
-      this.destinationPath('public/Add' + this.entityNameCapitalized + '.vue'),
+      this.destinationPath('public/src/components/Add' + this.entityNameCapitalized + '.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('EntityDetail.vue'),
+      this.destinationPath('public/src/components/' + this.entityNameCapitalized + 'Detail.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('EntityItem.vue'),
+      this.destinationPath('public/src/components/' + this.entityNameCapitalized + 'Item.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('EntityList.vue'),
+      this.destinationPath('public/src/components/' + this.entityNameCapitalized + 'List.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('user-entities-db.js'),
+      this.destinationPath('public/src/firebase/user-' + this.entityName + 's' + '-db.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.actions.js'),
+      this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.actions.js'),
       { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
     );
   }
