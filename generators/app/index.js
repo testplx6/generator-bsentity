@@ -51,8 +51,32 @@ module.exports = class extends MyBase {
     );
 
       this.fs.copyTpl(
+      this.templatePath('index.js'),
+      this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + 'index.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
       this.templatePath('entities.actions.js'),
       this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.actions.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.getters.js'),
+      this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.getters.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.mutations.js'),
+      this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.mutations.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.state.js'),
+      this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.state.js'),
       { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
     );
   }
