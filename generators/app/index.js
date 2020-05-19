@@ -79,5 +79,35 @@ module.exports = class extends MyBase {
       this.destinationPath('public/src/store/' + this.entityName + 's' + '/' + this.entityName + 's' + '.state.js'),
       { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
     );
+
+      this.fs.copyTpl(
+      this.templatePath('Entity.vue'),
+      this.destinationPath('public/src/views/' + this.entityNameCapitalized + '.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('Entities.vue'),
+      this.destinationPath('public/src/views/' + this.entityNameCapitalized + 's' + '.vue'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.actions.spec.js'),
+      this.destinationPath('public/tests/unit/store/' + this.entityName + 's' + "/" + this.entityName + 's' + '.actions.spec.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.getters.spec.js'),
+      this.destinationPath('public/tests/unit/store/' + this.entityName + 's' + "/" + this.entityName + 's' + '.getters.spec.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
+
+      this.fs.copyTpl(
+      this.templatePath('entities.mutations.spec.js'),
+      this.destinationPath('public/tests/unit/store/' + this.entityName + 's' + "/" + this.entityName + 's' + '.mutations.spec.js'),
+      { entityNameCapitalized: this.entityNameCapitalized, entityName: this.entityName }
+    );
   }
 };
