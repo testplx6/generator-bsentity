@@ -1,0 +1,3 @@
+in "generators/app/*"
+replace "entity"
+with "bob"
