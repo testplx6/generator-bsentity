@@ -8,12 +8,14 @@ class MyBase extends Generator {
   insertInFile(path, needle, strToInsert) {
     path = this.destinationPath(path);
     if (this.fs.exists(path)) {
-      this.log(path, 'exists');
-      let file = this.fs.read(path);
+      const file = this.fs.read(path);
 
-      file = file.replace(needle, strToInsert + needle);
-
-      this.fs.write(path, file);
+      const newFile = file.replace(needle, strToInsert + needle);
+      if (newFile == file) {
+        this.log('cannot edit', path, '. Is', needle, 'present ?');
+      } else {
+        this.fs.write(path, newFile);
+      }
     } else {
       this.log(path, 'does not exists');
     }
