@@ -7,9 +7,8 @@ export default {
   getUser<%= entityNameCapitalized %>s: async ({ rootState, commit }) => {
     const user<%= entityNameCapitalized %>Db = new User<%= entityNameCapitalized %>sDB(rootState.authentication.user.id)
 
-    user<%= entityNameCapitalized %>Db.readAll(null, <%= entityName %>s => {
-      commit('set<%= entityNameCapitalized %>s', <%= entityName %>s)
-    })
+    const <%= entityName %>s = await user<%= entityNameCapitalized %>Db.readAll()
+    commit('set<%= entityNameCapitalized %>s', <%= entityName %>s)
   },
 
   /**
